@@ -1,6 +1,11 @@
 https://docs.google.com/presentation/d/1yFG40i5yzxg6dPBREtuAr66bEUlCx-hZAQRmIoNbAm4/edit?usp=sharing
 https://www.scrumstudy.com/
 
+https://nodejs.org/es/download/
+
 #Documentaciones
 https://developer.mozilla.org/es/
 https://www.w3schools.com/
+
+#Instalar GIT en el Path
+https://www.answerlookup.com/how-add-git-windows-path-environment-variable
