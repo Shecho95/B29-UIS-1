@@ -49,6 +49,39 @@
 // console.log('Total: ', sum(2, 5));
 
 /* Callbacks */
+// const usrs = [ 
+//     {
+//         id: 1,
+//         name: "cecilia",
+//         lastname: "Apellido",
+//         cc: 123456789,
+//         brithday: '12-9-1980',
+
+//         getFullName(){
+//             return `${ this.name } ${ this.lastname }`
+//         }
+//     }
+// ]
+
+// const getUserById = (id, callback) => {
+//     const usr = usrs[0];
+
+//     setTimeout(() => {
+//         callback(usr);
+//     }, 2000)
+// }
+
+// console.log("Inicio");
+
+// function callback(user){
+//     console.log("Nombre: ", user.name);
+//     console.log("cc: ", user.cc);
+// }
+
+// getUserById(1, callback);
+
+/* Promesas */
+
 const usrs = [ 
     {
         id: 1,
@@ -60,26 +93,65 @@ const usrs = [
         getFullName(){
             return `${ this.name } ${ this.lastname }`
         }
+    },
+    {
+        id: 2,
+        name: "Lupe",
+        lastname: "Apellido",
+        cc: 987654321,
+        brithday: '12-9-1905',
+
+        getFullName(){
+            return `${ this.name } ${ this.lastname }`
+        }
     }
 ]
 
-const getUserById = (id, callback) => {
-    const usr = usrs[0];
+const wishlists = [
+    {
+        userId: 1,
+        wishlist: [1, 9, 17]
+    }
+]
 
-    setTimeout(() => {
-        callback(usr);
-    }, 2000)
+const getUserById = (userId) => {
+    return new Promise((resolve, reject) => {
+        const usr = usrs.find(user => user.id == userId);
+
+        (usr) ? resolve(usr) : reject(`User not found: ${ userId }`);
+    });
 }
 
-console.log("Inicio");
+const getWishlistByUSerId = (userId) => {
+    return new Promise((resolve, reject) => {
+        const wishlist = wishlists.find(wishlist => wishlist.userId == userId);
 
-getUserById(1, ( user )=> {
-    console.log("Nombre: ", user.name);
-    console.log("cc: ", user.cc);
-});
+        (wishlist) ? resolve(wishlist) : reject(`Wishlist not found: ${ userId }`);
+    })
+}
 
-// getUserById(1, (user) => {
-//     new Email.to = user.mail;
-//     Email.send();
-// });
+// Server <<------->> Cliente
 
+const id = 1;
+
+const getFullProfile = async (userId) =>{
+    const profile = await getUserById(userId);
+    const wishlistResponse = await getWishlistByUSerId(userId);
+
+    profile.wishlist = wishlistResponse.wishlist;
+
+    console.log(profile);
+}
+
+getFullProfile(id);
+
+// let profile = {};
+
+// getUserById(id).then(response => {
+//     profile = response;
+//     return getWishlistByUSerId(id)
+// }).then( response => {
+//     profile.wishlist = response.wishlist;
+// }).then(() => {
+//     console.log(profile);
+// }).catch(err => console.log(`Error: ${ err }`) );
