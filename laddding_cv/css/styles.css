@@ -1,0 +1,53 @@
+body{
+    color: #434e5e;
+}
+/* Nav */
+.social-links a{
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    padding-top: 7px;
+    border-radius: 50%;
+    transition: background .4s ease-in-out;
+}
+.social-links a:hover{
+    background: #515151;
+}
+
+/* Summary */
+.profile-image{
+    max-width: 250px;
+    height: 250px;
+}
+
+/* Skills */
+.skills .skills__inner .skills__icon{
+    width: 90px;
+    height: 90px;
+    top: -50px;
+    left: 50%;
+    text-align: center;
+    background: #6c757d;
+    color: #fff;
+    padding-top: 16px;
+    margin-left: -45px;
+}
+
+.skills .skills__inner .skills__icon svg{
+    font-size: 50px;
+}
+.skills .skills__inner .skills__icon.skills__icon_push svg{
+    padding-top: 21px;
+}
+
+/* Experience */
+.experience .experience__img .experience__abstrac{
+    color: #000;
+    transition: background .5s ease-in-out, color .5s;
+}
+.experience .experience__img:hover .experience__abstrac{
+    display: block !important;
+    top: 0;
+    background: #000000bf;
+    color: #fff
+}
