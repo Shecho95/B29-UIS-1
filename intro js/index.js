@@ -132,15 +132,19 @@ const getWishlistByUSerId = (userId) => {
 
 // Server <<------->> Cliente
 
-const id = 1;
+const id = 3;
 
 const getFullProfile = async (userId) =>{
-    const profile = await getUserById(userId);
-    const wishlistResponse = await getWishlistByUSerId(userId);
-
-    profile.wishlist = wishlistResponse.wishlist;
-
-    console.log(profile);
+    try{
+        const profile = await getUserById(userId);
+        const wishlistResponse = await getWishlistByUSerId(userId);
+    
+        profile.wishlist = wishlistResponse.wishlist;
+    
+        console.log(profile);
+    } catch(err){
+        console.log("Error: ", err)
+    }
 }
 
 getFullProfile(id);
