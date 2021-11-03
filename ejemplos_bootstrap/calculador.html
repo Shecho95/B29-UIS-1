@@ -22,73 +22,124 @@
     <div class="container" style="padding: 30px;border: 1px solid grey;margin-top: 50px;background: whitesmoke;    box-shadow: 5px 5px #525252;    border-radius: 10px;">
         <div class="row mb-4">
             <div class="col-lg-12 nopadding">
-                <input type="text" name="calculation" id="calculation" class="form-control" style="padding: 10px;font-size: 30px;height: 50px;">
+                <form name="calculator">
+                    <input type="text" 
+                        name="values" 
+                        id="values" 
+                        class="form-control" 
+                        style="padding: 10px;font-size: 30px;height: 50px;"
+                        onkeypress="return enabledCharacters(event)"
+                    >
+                </form>
             </div>
         </div>
         <div class="row">
             <div class="col-3 nopadding mb-2">
-                <button id="one" class="w-100 btn btn-primary btn-block btn_font">1</button>
+                <button id="one" onclick="editValue(value)" value="1" class="w-100 btn btn-primary btn-block btn_font">1</button>
             </div>
             <div class="col-3 nopadding mb-2">
-                <button id="two" class="w-100 btn btn-primary btn-block btn_font">2</button>
+                <button id="two" onclick="editValue(value)" value="2" class="w-100 btn btn-primary btn-block btn_font">2</button>
             </div>
             <div class="col-3 nopadding mb-2">
-                <button id="three" class="w-100 btn btn-primary btn-block btn_font">3</button>
+                <button id="three" onclick="editValue(value)" value="3" class="w-100 btn btn-primary btn-block btn_font">3</button>
             </div>
             <div class="col-3 nopadding mb-2">
-                <button id="add" class="w-100 btn btn-success btn-block btn_font">+</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-3 nopadding mb-2">
-                <button id="four" class="w-100 btn btn-primary btn-block btn_font">4</button>
-            </div>
-            <div class="col-3 nopadding mb-2">
-                <button id="five" class="w-100 btn btn-primary btn-block btn_font">5</button>
-            </div>
-            <div class="col-3 nopadding mb-2">
-                <button id="six" class="w-100 btn btn-primary btn-block btn_font">6</button>
-            </div>
-            <div class="col-3 nopadding mb-2">
-                <button id="minus" class="w-100 btn btn-success btn-block btn_font">-</button>
+                <button id="add" onclick="editValue(value)" value="+" class="w-100 btn btn-success btn-block btn_font">+</button>
             </div>
         </div>
         <div class="row">
             <div class="col-3 nopadding mb-2">
-                <button id="seven" class="w-100 btn btn-primary btn-block btn_font">7</button>
+                <button id="four" onclick="editValue(value)" value="4" class="w-100 btn btn-primary btn-block btn_font">4</button>
             </div>
             <div class="col-3 nopadding mb-2">
-                <button id="eight" class="w-100 btn btn-primary btn-block btn_font">8</button>
+                <button id="five" onclick="editValue(value)" value="5" class="w-100 btn btn-primary btn-block btn_font">5</button>
             </div>
             <div class="col-3 nopadding mb-2">
-                <button id="nine" class="w-100 btn btn-primary btn-block btn_font">9</button>
+                <button id="six" onclick="editValue(value)" value="6" class="w-100 btn btn-primary btn-block btn_font">6</button>
             </div>
             <div class="col-3 nopadding mb-2">
-                <button id="multiply" class="w-100 btn btn-success btn-block btn_font">*</button>
+                <button id="minus" onclick="editValue(value)" value="-" class="w-100 btn btn-success btn-block btn_font">-</button>
             </div>
         </div>
         <div class="row">
             <div class="col-3 nopadding mb-2">
-                <button id="dot" class="w-100 btn btn-primary btn-block btn_font">.</button>
+                <button id="seven" onclick="editValue(value)" value="7" class="w-100 btn btn-primary btn-block btn_font">7</button>
             </div>
             <div class="col-3 nopadding mb-2">
-                <button id="zero" class="w-100 btn btn-primary btn-block btn_font">0</button>
+                <button id="eight" onclick="editValue(value)" value="8" class="w-100 btn btn-primary btn-block btn_font">8</button>
             </div>
             <div class="col-3 nopadding mb-2">
-                <button id="equal" class="w-100 btn btn-primary btn-block btn_font">=</button>
+                <button id="nine" onclick="editValue(value)" value="9" class="w-100 btn btn-primary btn-block btn_font">9</button>
             </div>
             <div class="col-3 nopadding mb-2">
-                <button id="divide" class="w-100 btn btn-success btn-block btn_font">/</button>
+                <button id="multiply" onclick="editValue(value)" value="*" class="w-100 btn btn-success btn-block btn_font">*</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 nopadding mb-2">
+                <button id="dot" onclick="editValue(value)" value="." class="w-100 btn btn-primary btn-block btn_font">.</button>
+            </div>
+            <div class="col-3 nopadding mb-2">
+                <button id="zero" onclick="editValue(value)" value="0" class="w-100 btn btn-primary btn-block btn_font">0</button>
+            </div>
+            <div class="col-3 nopadding mb-2">
+                <button id="equal" onclick="result()" class="w-100 btn btn-primary btn-block btn_font">=</button>
+            </div>
+            <div class="col-3 nopadding mb-2">
+                <button id="divide" onclick="editValue(value)" value="/" class="w-100 btn btn-success btn-block btn_font">/</button>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 nopadding">
-                <button class="w-100 btn btn-danger  btn-block" onclick="ClearData()">Borrar</button>
+                <button class="w-100 btn btn-warning mb-2 btn-block" onclick="clearData()">Borrar</button>
             </div>
             <div class="col-lg-6 nopadding">
-                <button class="w-100 btn btn-danger  btn-block" onclick="ClearData()">Limpiar</button>
+                <button class="w-100 btn btn-danger mb-2 btn-block" onclick="clearData('all')">Limpiar</button>
             </div>
         </div>
     </div>
+
+    <script>
+        function enabledCharacters(e){
+            const keycode = e.keyCode || e.which;
+            const key = String.fromCharCode(keycode);
+            const enbaledChars = '0123456789+-*/.';
+            const specialKeys  = [37, 39, 8, 46];
+            
+            let isSpecialKey = specialKeys.includes(keycode);
+            if(enbaledChars.indexOf(key) == -1 && !isSpecialKey){
+                return false
+            }
+        }
+
+        function editValue(character){
+            let prevValue = document.calculator.values.value;
+            let lastLetter = prevValue[prevValue.length - 1];
+            let control = "/*-+";
+
+            if(control.indexOf(character) != -1 && control.indexOf(lastLetter) == -1){
+                prevValue += character;
+            } else if(control.indexOf(character) == -1){
+                prevValue += character;
+            }
+            document.getElementById("values").value = prevValue;
+        }
+
+        function clearData(cant = 'one'){
+            if(cant == 'all'){
+                document.getElementById("values").value = "";
+            }else{
+                const prevValue = document.calculator.values.value;
+                const newVal = prevValue.substring(0, prevValue.length - 1);
+                document.getElementById("values").value = newVal;
+            }
+        }
+
+        function result(){
+            const stringEval = document.calculator.values.value;
+            let result = eval(stringEval);
+            document.getElementById("values").value = result;
+        }
+    </script>
 </body>
 </html>
