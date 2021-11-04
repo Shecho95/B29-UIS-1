@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro VueJs</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="./components/message.js"></script>
+    <script src="./components/computed.js"></script>
+    <script src="./components/methods.js"></script>
+    <script src="./components/vmodel.js"></script>
+    <script src="./components/propsandemmit.js"></script>
+    <script src="./components/child-data.js"></script>
+    <script src="./components/parent-data.js"></script>
+    <script src="./components/conditionals.js"></script>
+</head>
+<body>
+<h1>Intro Vuejs</h1>
+<div id="app">
+    <message></message>
+    <computed></computed>
+    <methods></methods>
+    <vmodel></vmodel>
+    <propsandemmit
+        :options="optionsEnabled"
+        @save-date="saveInDb"
+    ></propsandemmit>
+    <child-data ref="child"></child-data>
+    <p> {{ bandera }} </p>
+    <parent-data></parent-data>
+    <conditionals></conditionals>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data(){
+            return {
+                optionsEnabled: [
+                    {
+                        id: 1,
+                        str: "Opción 1"
+                    },
+                    {
+                        id: 2,
+                        str: "Opción 2"
+                    },
+                    {
+                        id: 3,
+                        str: "Opción 3"
+                    },
+                ],
+                textoParent: "Esto es texto del componete padre",
+                bandera: ""
+            }
+        },
+        methods:{
+            saveInDb(optionId){
+                console.log("Guardando en base de datos: ", optionId);
+            }
+        },
+        mounted(){
+            console.log("Los componentes hijos fueron montados al DOM virtuak");
+            console.log(this.$refs.child.childMessage);
+
+            this.bandera = this.$refs.child.childMessage;
+            // setTimeout(()=>{
+            //     this.$refs.child.showAlert();
+            // }, 2000);
+        }
+    })
+</script>
+</body>
+</html>
