@@ -15,11 +15,19 @@
     <script src="./components/child-data.js"></script>
     <script src="./components/parent-data.js"></script>
     <script src="./components/conditionals.js"></script>
+    <script src="./components/layout.js"></script>
+    <script src="./components/watchers.js"></script>
+    <script src="./directives/focus.js"></script>
+    <script src="./directives/change-style.js"></script>
+    <script src="./components/load-dynamic.js"></script>
+    <script src="./components/dynamic-comp/comp1.js"></script>
+    <script src="./components/dynamic-comp/comp2.js"></script>
+    <script src="./components/dynamic-comp/comp3.js"></script>
 </head>
 <body>
 <h1>Intro Vuejs</h1>
 <div id="app">
-    <message></message>
+    <message v-change-style="{ backgroundColor: '#000', textColor: '#fff' }"></message>
     <computed></computed>
     <methods></methods>
     <vmodel></vmodel>
@@ -31,6 +39,25 @@
     <p> {{ bandera }} </p>
     <parent-data></parent-data>
     <conditionals></conditionals>
+    <layout>
+        <template slot="header">
+            <nav>
+                <ul>
+                    <li>Boton menu 1</li>
+                    <li>Boton menu 2</li>
+                    <li>Boton menu 3</li>
+                </ul>
+            </nav>
+        </template>
+
+        <message></message>
+
+        <template slot="footer">
+            <small>Hecho con amor by factory</small>
+        </template>
+    </layout>
+    <watchers></watchers>
+    <load-dynamic></load-dynamic>
 </div>
 
 <script>
