@@ -1,19 +1,46 @@
 const { Router } = require('express');
+const { check } = require('express-validator');
+
+const { 
+    emailExist,
+    rolExist,
+    userByIdExists
+} = require('../helpers/req-validators');
+const { validateDate } = require('../middlewares')
 
 const router = Router();
 
 const { 
-        usersPost, 
-    } = require('../controllers/users')
+    usersGet,
+    usersPost, 
+    usersPut,
+    usersDelete
+} = require('../controllers/users')
 
-// router.get('/', productsGet);
+router.get('/', usersGet);
 
-router.post('/', usersPost);
+router.post('/',[
+    check('name', 'El nombre es requerido').not().isEmpty(),
+    check('password', 'La contraseña debe tener minimo 6 dighitos').isLength({ min: 6 }),
+    check('email', 'El correo no es valido').isEmail(),
+    check('email').custom(emailExist),
+    check('rol').custom(rolExist),
+    validateDate
+], usersPost);
 
-// router.get('/:sku', productsGetBySKU);
+router.put('/:id', [
+    check('id', 'No es un Id valido').isMongoId(),
+    check('id').custom(userByIdExists),
+    check('name', 'El nombre es requerido').not().isEmpty(),
+    validateDate
+], usersPut);
 
-// router.put('/:sku', productsPut);
+router.delete('/:id', [
+    check('id', 'No es un Id valido').isMongoId(),
+    check('id').custom(userByIdExists),
+    validateDate
+], usersDelete);
 
-// router.delete(':sku', productsDelete);
+// router.get('/:id', productsGetBySKU);
 
 module.exports = router;
