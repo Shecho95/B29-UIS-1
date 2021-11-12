@@ -1,0 +1,4 @@
+Se requiere implementar en nuestra base de datos una colección que nos permita
+gestionar los roles de usuario, seguido a esto es necesario validar en la ruta de
+creación de usuario si el rol especificado en el cuerpo de la petición hace parte de
+nuestro registro
