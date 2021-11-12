@@ -1,22 +1,11 @@
-const bcrypt = require('bcryptjs');
-
-const User = require('../models/user');
-
 const usersGet = (req, res) => {
     res.json({ msg: "get Products controller" });
 }
 
-const usersPost = async (req, res) => {
-    const { name, email, password, rol } = req.body;
+const usersPost = (req, res) => {
+    const { name, author } = req.body;
 
-    const user = new User({ name, email, password, rol });
-
-    const salt = bcrypt.genSaltSync();
-    user.password = bcrypt.hashSync(password, salt);
-
-    await user.save();
-
-    res.json({ user });
+    res.json({ msg: "Post Products controller", name, author });
 }
 
 const usersGetBySKU = (req, res) => {
