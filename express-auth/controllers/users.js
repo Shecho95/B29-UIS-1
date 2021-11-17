@@ -1,5 +1,6 @@
 const {response, request} = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
@@ -20,6 +21,44 @@ const usersGet = async (req = request, res = response) => {
         users,
         totalUsers
     });
+}
+
+const usersLogin = async (req, res) => {
+    const { email, password } = req.body;
+
+    try{
+        const user = await User.findOne({ email });
+        if(!user){
+            return res.status(400).json({
+                msg: "Usuario o contraseña invalida - User not found"
+            })
+        }
+
+        if(!user.status){
+            return res.status(400).json({
+                msg: "Usuario inactivo enviar correo a xxxxx@mail.com"
+            })
+        }
+
+        const validatePassword = bcrypt.compareSync(password, user.password);
+        if(!validatePassword){
+            return res.status(400).json({
+                msg: "Usuario o contraseña invalida - Bad password"
+            })
+        }
+
+        const token = jwt.sign(user.toJSON(), process.env.PRIVATEKEY, {
+            expiresIn: "12h"
+        })
+
+        res.json({
+            user,
+            token
+        })
+    }
+    catch(err){
+        res.status(500).json({ msg: "Contactese con servicio al cliente" })
+    }
 }
 
 const usersPost = async (req, res) => {
@@ -66,6 +105,7 @@ const usersDelete = async (req, res) => {
 
 module.exports = {
     usersGet,
+    usersLogin,
     usersPost,
     usersPut,
     usersDelete
