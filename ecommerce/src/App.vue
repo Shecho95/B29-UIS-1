@@ -5,7 +5,7 @@
         <products-list></products-list>
       </template>
       <template slot="cart">
-        <h1>Carrito</h1>
+        <cart></cart>
       </template>
     </layout>
   </div>
@@ -14,11 +14,12 @@
 <script>
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import ProductsList from '@/components/ProductsList.vue'
+import Cart from '@/components/Cart.vue'
 
 export default {
   name: 'App',
   components: {
-    'layout': BaseLayout, ProductsList
+    'layout': BaseLayout, ProductsList, Cart
   }
 }
 </script>

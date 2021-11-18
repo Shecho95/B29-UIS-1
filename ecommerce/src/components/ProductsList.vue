@@ -14,13 +14,19 @@
         </b-col>
     </paginate>
 
-    <paginate-links for="products"></paginate-links>
+    <paginate-links for="products"
+        :classes="{
+            'ul': ['pagination', 'justify-content-center'],
+            'li': 'page-item',
+            'li > a': 'page-link'
+        }"
+    ></paginate-links>
 </div>
 <b-alert variant="primary" show v-else> No hay productos disponibles en la tienda </b-alert>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 import ProductItem from '@/components/ProductItem.vue'
 
@@ -43,8 +49,9 @@ export default {
     },
     methods: {
         ...mapActions('products', ['fetchProducts']),
+        ...mapMutations('cart', ['addProduct']),
         addToCart(product){
-            console.log(`addToCart: ${product}`);
+            this.addProduct(product);
         }
     }
 }
