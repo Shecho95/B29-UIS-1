@@ -6,7 +6,7 @@
         :per="perPage"
         class="row"
     >
-        <b-col cols="4"
+        <b-col cols="4" class="mb-2"
             v-for="item in paginated('products')"
             :key="item.id"
         >
