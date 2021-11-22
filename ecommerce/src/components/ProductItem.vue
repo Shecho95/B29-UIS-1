@@ -3,7 +3,7 @@
         :img-src="product.image"
         :img-alt="product.title"
         img-top
-        class="mb-2"
+        class="h-100"
     >
         <p> COL $. {{ product.price }} </p>
         <b-button @click="$emit('clickBtn', product)" variant="danger">Agregar al carrito</b-button>

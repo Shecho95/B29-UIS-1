@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "text": "Hacer el sprint 1 - Planteamiento del problema",
+      "done": true
+    },
+    {
+      "id": 2,
+      "text": "Hacer deploy",
+      "done": false
+    },
+    {
+      "id": 1637445189480,
+      "text": "Realizar sprint 3",
+      "done": true
+    }
+  ]
+}
