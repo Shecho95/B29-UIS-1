@@ -1,4 +1,5 @@
 Instalación de dependencias: https://devcenter.heroku.com/articles/heroku-cli
+DEploy VUE: https://cli.vuejs.org/guide/deployment.html#heroku
 
 //Antes de empezar revisamos que tengamos bien configurados nuestros apuntadores/configuraciones para la DB y recursos externos necesarios
 
