@@ -1,0 +1,19 @@
+Vamos a rescatar nuestro proyecto de todolist, si no lo tienes debes entrar al 
+repo del curso, copiarlo e instalar las dependencias con npm. Requerimos tener 
+una API (puede ser falsa) que nos permita guardar los TODOs, en la propuesta del 
+ejercicio se hizo mediante el paquete json-server:
+
+> npm install -g json-server
+> json-server --watch db.json
+                                                            '/todos/:id/update'
+Si nos vamos a la ruta de editar Todo, de nuestro frontend, '/todos/4/update' 
+nos podemos dar cuenta que si entramos directamente no vamos a tener información 
+para renderizar.
+
+El reto: utilizar las herramientas conocidas para extender el proyecto de forma 
+que yo pueda abrir la vista de editar TODO directamente sin tener que seleccionarlo 
+desde la lista de TODOs, consumiendo su información desde el backend.
+
+### Documentación
+
+Json-server: https://www.npmjs.com/package/json-server
