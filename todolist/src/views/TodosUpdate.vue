@@ -5,7 +5,7 @@
             submitText="Actualizar todo"
         ></todo-form>
     </div>
-    <b-aler v-else> Todo no identificado </b-aler>
+    <b-alert show v-else> Todo no identificado </b-alert>
 </template>
 
 <script>
@@ -19,8 +19,13 @@ export default {
     computed: {
         ...mapState('todos', ['selectedTodo'])
     },
+    created(){
+        if(!this.selectedTodo){
+            this.fetchTodo(this.$route.params.id);
+        }
+    },
     methods:{
-        ...mapActions('todos', ['updateTodo']),
+        ...mapActions('todos', ['updateTodo', 'fetchTodo']),
         saveTodo(todo){
             this.updateTodo(todo).then( () => {
                 this.$router.push({ name: 'Todos' })

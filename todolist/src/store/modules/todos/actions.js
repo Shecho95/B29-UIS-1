@@ -10,6 +10,16 @@ export async function fetchTodos({ commit }){
     });
 }
 
+export async function fetchTodo({ commit }, id){
+    await Vue.axios.get('/todos/'+id).then( ({ data }) => {
+        commit('setTodo', data);
+    }).catch(err => {
+        commit('todosError', err.message);
+    }).finally(() => {
+        console.log("Petición de fetchTodos resuelta");
+    });
+}
+
 export async function addTodos({ commit, dispatch }, todo){
     await Vue.axios.post('/todos', {
         id: Date.now(),

@@ -20,7 +20,8 @@ const {
     usersLogin,
     usersPost, 
     usersPut,
-    usersDelete
+    usersDelete,
+    uploadImg
 } = require('../controllers/users');
 
 router.get('/', [
@@ -58,6 +59,6 @@ router.delete('/:id', [
     validateDate
 ], usersDelete);
 
-// router.get('/:id', productsGetBySKU);
+router.post('/upload', uploadImg);
 
 module.exports = router;
