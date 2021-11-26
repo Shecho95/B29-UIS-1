@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
+const { uploadFile } = require('../helpers/upload-file');
+const user = require('../models/user');
 
 const usersGet = async (req = request, res = response) => {
     const { limit = 5, page = 1 } = req.query;
@@ -103,10 +105,19 @@ const usersDelete = async (req, res) => {
     res.json(user);
 }
 
+const uploadImg = async (req, res) => {
+    await uploadFile(req.files, undefined, 'profiles').then( name =>{
+        res.json(name);
+    }).catch(msg => {
+        res.status(400).json({ msg });
+    });
+}
+
 module.exports = {
     usersGet,
     usersLogin,
     usersPost,
     usersPut,
-    usersDelete
+    usersDelete,
+    uploadImg
 }
